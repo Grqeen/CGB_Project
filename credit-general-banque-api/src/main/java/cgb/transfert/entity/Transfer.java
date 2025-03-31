@@ -15,7 +15,12 @@ public class Transfer {
     private Double amount;
     private LocalDate transferDate;
     private String description;
+    private enum etat{success, failure, currents};
+    private etat etatTransfert;
 
+    @ManyToOne
+    @JoinColumn(name = "lot_transfer_id")  // Ajoute cette colonne pour faire le lien
+    private LotTransfer lotTransfer;
     // Getters and Setters with lombok
     
     public Long getId() {
@@ -53,6 +58,12 @@ public class Transfer {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public etat getEtatTransfert() {
+		return etatTransfert;
+	}
+	public void setEtatTransfert(etat etatTransfert) {
+		this.etatTransfert = etatTransfert;
 	}
 
 }

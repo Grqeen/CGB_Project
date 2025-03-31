@@ -56,9 +56,17 @@ public class TransferService {
         }
     }
     
+   
+    
     @GetMapping
     public List<Account> findAllAccount() {
     	 return accountRepository.findAll();
+    	
+    }
+    
+    @GetMapping
+    public List<Transfer> findAllAccountTransfer() {
+    	 return transferRepository.findAll();
     	
     }
 }

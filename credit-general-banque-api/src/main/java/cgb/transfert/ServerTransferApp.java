@@ -1,11 +1,10 @@
 package cgb.transfert;
 
-
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
+import cgb.transfert.services.LotTransferService;
 import cgb.transfert.services.Utilitaire;
 
 
@@ -22,6 +21,9 @@ public class ServerTransferApp {
 			System.out.println("resultat !!!!!!!!! : " + u.isIbanStructureValide(touc));
 
 			System.out.println("resultat is valid !!!!!!!!! : " + u.isIbanValide(touc));
+			
+			System.out.println();
+			
 			
 			
 		} catch (Exception e) {
