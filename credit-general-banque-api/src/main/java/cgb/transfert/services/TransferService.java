@@ -2,12 +2,16 @@ package cgb.transfert.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import cgb.transfert.dto.Etat;
 import cgb.transfert.entity.Account;
+import cgb.transfert.entity.Log;
 import cgb.transfert.entity.Transfer;
 import cgb.transfert.repository.AccountRepository;
+import cgb.transfert.repository.LogRepository;
 import cgb.transfert.repository.TransferRepository;
 import jakarta.transaction.Transactional;
 
@@ -24,6 +28,8 @@ public class TransferService {
     @Autowired
     private TransferRepository transferRepository;
 
+	@Autowired
+	private LogRepository logRepository;
     
     /*
      * Rappel du cours sur les transactions... Tout ou rien
@@ -59,12 +65,16 @@ public class TransferService {
     }
     
     @Transactional
+    @Async
     public void createLotTransfer(String sourceAccountNumber, String destinationAccountNumber,
                                    Double amount, LocalDate transferDate, String description) {
+    	
         Account sourceAccount = accountRepository.findById(sourceAccountNumber)
                 				.orElseThrow(() -> new RuntimeException("Source account not found"));
         Account destinationAccount = accountRepository.findById(destinationAccountNumber)
                 				.orElseThrow(() -> new RuntimeException("Destination account not found"));
+
+		Log logger = new Log(Etat.FAILURE, "Plus de solde sur le compte", LocalDate.now(), this.getClass().getSimpleName());
 
         /*Pas de découvert autorisé*/
         if (sourceAccount.getSolde().compareTo(amount) < 0) {
@@ -73,10 +83,12 @@ public class TransferService {
 
         sourceAccount.setSolde(sourceAccount.getSolde()-(amount)); 
         destinationAccount.setSolde(destinationAccount.getSolde()+(amount));
+		logger = new Log(Etat.FAILURE, "Fond debiter", LocalDate.now(), this.getClass().getSimpleName());
 
         accountRepository.save(sourceAccount);
         accountRepository.save(destinationAccount);
-
+        
+        logRepository.save(logger);
         }
     }
    

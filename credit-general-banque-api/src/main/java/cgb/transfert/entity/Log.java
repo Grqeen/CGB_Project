@@ -17,11 +17,12 @@ public class Log {
 	private Etat etatlog;
 	private String description;
 	private LocalDate date;
-	
-	public Log(Etat etatlog, String description, LocalDate date) {
+	private String nomClass;
+	public Log(Etat etatlog, String description, LocalDate date, String nomClass) {
 		this.etatlog = etatlog;
 		this.description = description;
 		this.date = date;
+		this.nomClass = nomClass;
 	}
 
 	public Etat getEtatlog() {
@@ -46,6 +47,14 @@ public class Log {
 
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+
+	public String getClass1() {
+		return nomClass;
+	}
+
+	public void setClass1(String nomClass) {
+		this.nomClass = nomClass;
 	}
 	
 	
