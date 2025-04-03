@@ -1,38 +1,41 @@
 package cgb.transfert.entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
+import cgb.transfert.dto.Etat;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 
 @Entity
 public class LotTransfer {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@OneToMany(mappedBy = "lotTransfer", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinColumn(name = "lot_transfer_id") // Ajoute cette colonne pour faire le lien
 	private List<Transfer> lotTransfer;
+	private String refLot;
+	private String sourceAccountNumber;
+	private LocalDate date;
 
-	private String description;
-	private Date date;
+	private Etat etatLotTransfer;
 
-	public enum etat {
-		success, waiting , failure, canceled
+	public LotTransfer() {
 	}
 
-	private etat etatLotTransfer;
-
-	public LotTransfer() {}
-	public LotTransfer(List<Transfer> lotTransfer, String description, Date date, etat etatLotTransfer) {
-
+	public LotTransfer(List<Transfer> lotTransfer, String refLot, String sourceAccountNumber,
+			LocalDate date, Etat etatLotTransfer) {
 		this.lotTransfer = lotTransfer;
-		this.description = description;
+		this.refLot = refLot;
+		this.sourceAccountNumber = sourceAccountNumber;
 		this.date = date;
 		this.etatLotTransfer = etatLotTransfer;
 	}
@@ -53,28 +56,36 @@ public class LotTransfer {
 		this.lotTransfer = lotTransfer;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public Date getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 
-	public etat getEtatLotTransfer() {
+	public Etat getEtatLotTransfer() {
 		return etatLotTransfer;
 	}
 
-	public void setEtatLotTransfer(etat etatLotTransfer) {
+	public void setEtatLotTransfer(Etat etatLotTransfer) {
 		this.etatLotTransfer = etatLotTransfer;
+	}
+
+	public String getSourceAccountNumber() {
+		return sourceAccountNumber;
+	}
+
+	public void setSourceAccountNumber(String sourceAccountNumber) {
+		this.sourceAccountNumber = sourceAccountNumber;
+	}
+
+	public String getRefLot() {
+		return refLot;
+	}
+
+	public void setRefLot(String refLot) {
+		this.refLot = refLot;
 	}
 
 }

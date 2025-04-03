@@ -18,11 +18,11 @@ import com.sun.net.httpserver.Authenticator.Success;
 
 import cgb.transfert.entity.Account;
 import cgb.transfert.entity.LotTransfer;
-import cgb.transfert.entity.LotTransfer.etat;
 import cgb.transfert.entity.Transfer;
 import cgb.transfert.entity.TransferRequest;
 import cgb.transfert.services.LotTransferService;
 import cgb.transfert.services.TransferService;
+import cgb.transfert.dto.LotTransferDTO;
 import cgb.transfert.entity.*;
 
 @RestController
@@ -31,30 +31,18 @@ public class LotTransferController {
 	@Autowired
 	private LotTransferService lottransferService;
 
-	// json avec listes des virements - fait via postman
-	@PostMapping("/createTransfer")
-	public ResponseEntity<?> TraitementLot(@RequestBody List<Transfer> transfers) {
 
-		try {
-			Date localNow = Date.valueOf(LocalDate.now());
-			LotTransfer transferlots = new LotTransfer(transfers, "transfer", localNow, etat.waiting);
-
-			LotTransfer ob = lottransferService.saveLotTransfer(transferlots);
-
-			return ResponseEntity.ok(ob);
-
-		} catch (Exception ex) {
-			LotTransferResponse errorResponse = new LotTransferResponse("FAILURE", ex.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
-		}
-
-	}
-	
-	@GetMapping("/findAll/LotTransfer")
-    public ResponseEntity<?> findAllLotTransfer(){
-		List<LotTransfer> transferLot = lottransferService.findAllLotTransfer();
-    	return ResponseEntity.ok(transferLot);
+	@PostMapping("/createLotTransfer")
+    public ResponseEntity<?> saveLotTransfer(@RequestBody LotTransferDTO dto) {
+        LotTransfer saved = lottransferService.saveLotTransfer(dto);
+        return ResponseEntity.ok(saved);
     }
+
+//	@GetMapping("/findAll/LotTransfer")
+//	public ResponseEntity<?> findAllLotTransfer() {
+//		List<LotTransfer> transferLot = lottransferService.findAllLotTransfer();
+//		return ResponseEntity.ok(transferLot);
+//	}
 
 }
 

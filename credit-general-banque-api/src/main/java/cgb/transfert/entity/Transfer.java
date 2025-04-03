@@ -1,7 +1,11 @@
 package cgb.transfert.entity;
 
 import jakarta.persistence.*;
+
+import java.sql.Date;
 import java.time.LocalDate;
+
+import cgb.transfert.dto.Etat;
 import lombok.*;
 
 @Entity
@@ -15,15 +19,13 @@ public class Transfer {
     private Double amount;
     private LocalDate transferDate;
     private String description;
-    private enum etat{success, failure, currents};
-    private etat etatTransfert;
-
-    @ManyToOne
-    @JoinColumn(name = "lot_transfer_id")  // Ajoute cette colonne pour faire le lien
-    private LotTransfer lotTransfer;
-    // Getters and Setters with lombok
+    private Etat etatTransfert;
+   
     
-    public Long getId() {
+    public Transfer() {
+		this.etatTransfert = Etat.WAITING;
+	}
+	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
@@ -50,8 +52,8 @@ public class Transfer {
 	public LocalDate getTransferDate() {
 		return transferDate;
 	}
-	public void setTransferDate(LocalDate transferDate) {
-		this.transferDate = transferDate;
+	public void setTransferDate(LocalDate date) {
+		this.transferDate = date;
 	}
 	public String getDescription() {
 		return description;
@@ -59,10 +61,10 @@ public class Transfer {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public etat getEtatTransfert() {
+	public Etat getEtatTransfert() {
 		return etatTransfert;
 	}
-	public void setEtatTransfert(etat etatTransfert) {
+	public void setEtatTransfert(Etat etatTransfert) {
 		this.etatTransfert = etatTransfert;
 	}
 
