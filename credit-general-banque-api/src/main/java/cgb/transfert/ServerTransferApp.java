@@ -14,17 +14,16 @@ public class ServerTransferApp {
 	public static void main(String[] args) {
 		SpringApplication.run(ServerTransferApp.class, args);
 		try {
-			Utilitaire u = Utilitaire.getInstanceValidator();
-
-			String touc = "FR6248234291492680058379044";
-
-			System.out.println("resultat !!!!!!!!! : " + u.isIbanStructureValide(touc));
-
-			System.out.println("resultat is valid !!!!!!!!! : " + u.isIbanValide(touc));
-			
-			System.out.println();
-			
-			
+//			Utilitaire u = Utilitaire.getInstanceValidator();
+//
+//			String touc = "FR6248234291492680058379044";
+//
+//			System.out.println("resultat !!!!!!!!! : " + u.isIbanStructureValide(touc));
+//
+//			System.out.println("resultat is valid !!!!!!!!! : " + u.isIbanValide(touc));
+//			
+//			System.out.println();
+		
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

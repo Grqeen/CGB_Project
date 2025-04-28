@@ -52,7 +52,6 @@ public class LotTransferService {
 		
 		logRepository.save(logger);
 		
-		;
 		return lotTransfer;
 	}
 

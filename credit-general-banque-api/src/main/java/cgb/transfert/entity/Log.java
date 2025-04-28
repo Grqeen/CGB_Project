@@ -24,6 +24,8 @@ public class Log {
 		this.date = date;
 		this.nomClass = nomClass;
 	}
+	
+	public Log() {}
 
 	public Etat getEtatlog() {
 		return etatlog;
