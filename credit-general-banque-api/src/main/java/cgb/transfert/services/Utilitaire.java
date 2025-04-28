@@ -56,4 +56,8 @@ public class Utilitaire {
 	public String getBasicBankNumbers(String iban) {
 		return iban.substring(14, 25);
 	}
+	
+	
+	
+	
 }

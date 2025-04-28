@@ -16,12 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sun.net.httpserver.Authenticator.Success;
 
-import cgb.transfert.entity.Account;
-import cgb.transfert.entity.LotTransfer;
-import cgb.transfert.entity.Transfer;
-import cgb.transfert.entity.TransferRequest;
+import cgb.transfert.services.LogService;
 import cgb.transfert.services.LotTransferService;
 import cgb.transfert.services.TransferService;
+import cgb.transfert.dto.Etat;
 import cgb.transfert.dto.LotTransferDTO;
 import cgb.transfert.entity.*;
 
@@ -30,10 +28,14 @@ import cgb.transfert.entity.*;
 public class LotTransferController {
 	@Autowired
 	private LotTransferService lottransferService;
-
+	@Autowired
+	private LogService logService;	
 
 	@PostMapping("/createLotTransfer")
     public ResponseEntity<?> saveLotTransfer(@RequestBody LotTransferDTO dto) {
+		Log unlog = new Log(Etat.SUCCESS, "Lot transfer réussi", LocalDate.now(), this.getClass().getSimpleName());
+		logService.saveLog(unlog);
+
         LotTransfer saved = lottransferService.saveLotTransfer(dto);
         return ResponseEntity.ok(saved);
     }

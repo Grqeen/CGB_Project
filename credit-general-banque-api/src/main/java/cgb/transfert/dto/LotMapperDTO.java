@@ -24,7 +24,7 @@ public class LotMapperDTO {
 	private LogService logService;	
 
 	public LotTransfer toEntity(LotTransferDTO dto) {
-		Log unlog = new Log(Etat.FAILURE, "Lot transfers null", LocalDate.now(),this.getClass().getSimpleName());;
+		Log unlog = new Log(Etat.FAILURE, "Lot transfers null", LocalDate.now(),this.getClass().getSimpleName());
 		LotTransfer lotTransfer = new LotTransfer();
 		
 		lotTransfer.setRefLot(dto.getRefLot());

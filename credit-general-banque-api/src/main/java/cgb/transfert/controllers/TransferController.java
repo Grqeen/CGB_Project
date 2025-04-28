@@ -7,9 +7,12 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import cgb.transfert.dto.Etat;
 import cgb.transfert.entity.Account;
+import cgb.transfert.entity.Log;
 import cgb.transfert.entity.Transfer;
 import cgb.transfert.entity.TransferRequest;
+import cgb.transfert.repository.LogRepository;
 import cgb.transfert.services.LotTransferService;
 import cgb.transfert.services.TransferService;
 
@@ -28,11 +31,13 @@ public class TransferController {
     @Autowired
     private LotTransferService lottransferService;
     
+    @Autowired
+	private LogRepository logRepository;
 
-    @PostMapping
+    @PostMapping("/creerTransfer/")
     public ResponseEntity<?> createTransfer(@RequestBody TransferRequest transferRequest) {
     //public ResponseEntity<Transfer> createTransfer(@RequestBody TransferRequest transferRequest) {
-        try {
+    	try {
     	Transfer transfer = transferService.createTransfer(
                 transferRequest.getSourceAccountNumber(),
                 transferRequest.getDestinationAccountNumber(),
@@ -40,7 +45,8 @@ public class TransferController {
                 transferRequest.getTransferDate(),
                 transferRequest.getDescription()
         );
-    	
+		Log logger = new Log(Etat.SUCCESS, "transfer reussie", LocalDate.now(), this.getClass().getSimpleName());
+		logRepository.save(logger);
     	return ResponseEntity.ok(transfer);
         }catch (RuntimeException e) {
             TransferResponse errorResponse = new TransferResponse("FAILURE", e.getMessage());
