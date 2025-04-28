@@ -83,7 +83,7 @@ public class TransferService {
 
         sourceAccount.setSolde(sourceAccount.getSolde()-(amount)); 
         destinationAccount.setSolde(destinationAccount.getSolde()+(amount));
-		logger = new Log(Etat.FAILURE, "Fond debiter", LocalDate.now(), this.getClass().getSimpleName());
+		logger = new Log(Etat.SUCCESS, "Fond debiter", LocalDate.now(), this.getClass().getSimpleName());
 
         accountRepository.save(sourceAccount);
         accountRepository.save(destinationAccount);

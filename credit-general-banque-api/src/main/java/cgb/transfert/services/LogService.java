@@ -52,9 +52,8 @@ public class LogService {
 	         file.write(jsonObject.toJSONString());
 	         file.close();
 	      } catch (Exception e) {
-	         // TODO Auto-generated catch block
 	         e.printStackTrace();
 	      }
-	      System.out.println("JSON file created: "+jsonObject);
+	      System.out.println("JSON : "+jsonObject);
 	}
 }
