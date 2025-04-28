@@ -19,6 +19,7 @@ public class Transfer {
     private Double amount;
     private LocalDate transferDate;
     private String description;
+	@Enumerated(EnumType.STRING)
     private Etat etatTransfert;
    
     

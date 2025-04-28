@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import cgb.transfert.dto.Etat;
 import cgb.transfert.entity.Account;
 import cgb.transfert.entity.Log;
@@ -49,7 +52,10 @@ public class LogService {
 
 	      try {
 	         FileWriter file = new FileWriter("C:\\Users\\dylan.ait-eldjoudi\\Documents\\jsonCGB\\cgbLogs.json");
-	         file.write(jsonObject.toJSONString());
+	         
+	         Gson gson = new GsonBuilder().setPrettyPrinting().create();
+	         String pretty = gson.toJson(jsonObject);
+	         file.write(pretty);
 	         file.close();
 	      } catch (Exception e) {
 	         e.printStackTrace();

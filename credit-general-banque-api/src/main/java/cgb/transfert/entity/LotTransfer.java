@@ -7,6 +7,8 @@ import java.util.List;
 import cgb.transfert.dto.Etat;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,7 +27,7 @@ public class LotTransfer {
 	private String refLot;
 	private String sourceAccountNumber;
 	private LocalDate date;
-
+	@Enumerated(EnumType.STRING)
 	private Etat etatLotTransfer;
 
 	public LotTransfer() {
