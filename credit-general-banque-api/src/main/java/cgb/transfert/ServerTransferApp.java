@@ -1,11 +1,11 @@
 package cgb.transfert;
 
-
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableAsync;
 
+import cgb.transfert.services.LotTransferService;
 import cgb.transfert.services.Utilitaire;
 
 
@@ -15,14 +15,16 @@ public class ServerTransferApp {
 	public static void main(String[] args) {
 		SpringApplication.run(ServerTransferApp.class, args);
 		try {
-			Utilitaire u = Utilitaire.getInstanceValidator();
-
-			String touc = "FR6248234291492680058379044";
-
-			System.out.println("resultat !!!!!!!!! : " + u.isIbanStructureValide(touc));
-
-			System.out.println("resultat is valid !!!!!!!!! : " + u.isIbanValide(touc));
-			
+//			Utilitaire u = Utilitaire.getInstanceValidator();
+//
+//			String touc = "FR6248234291492680058379044";
+//
+//			System.out.println("resultat !!!!!!!!! : " + u.isIbanStructureValide(touc));
+//
+//			System.out.println("resultat is valid !!!!!!!!! : " + u.isIbanValide(touc));
+//			
+//			System.out.println();
+		
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -41,6 +41,11 @@ public class DatabaseInitializer {
 		account3.setAccountNumber("FR7630004000031234567890143");
 		account3.setSolde(90000.00);
 		accountRepository.save(account3);
+		
+		Account account4 = new Account();
+		account4.setAccountNumber("FR7630056009271234567890182");
+		account4.setSolde(8000.00);
+		accountRepository.save(account4);
 
 	}
 }
