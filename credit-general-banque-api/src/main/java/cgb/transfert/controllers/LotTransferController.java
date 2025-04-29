@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,11 +33,13 @@ public class LotTransferController {
 	private LogService logService;	
 
 	@PostMapping("/createLotTransfer")
-    public ResponseEntity<?> saveLotTransfer(@RequestBody LotTransferDTO dto) {
+    public ResponseEntity<?> saveLotTransfer(@RequestBody LotTransferDTO dto) throws InterruptedException {
 		Log unlog = new Log(Etat.SUCCESS, "Lot transfer réussi", LocalDate.now(), this.getClass().getSimpleName());
 		logService.saveLog(unlog);
 
         LotTransfer saved = lottransferService.saveLotTransfer(dto);
+ 
+        
         return ResponseEntity.ok(saved);
     }
 

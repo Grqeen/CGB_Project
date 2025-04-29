@@ -38,21 +38,28 @@ public class LotTransferService {
 	private LogRepository logRepository;
     
 
-	public LotTransfer saveLotTransfer(LotTransferDTO dto) {
+	public LotTransfer saveLotTransfer(LotTransferDTO dto) throws InterruptedException {
 		Log logger = new Log(Etat.FAILURE, "Probleme lors du save du lot", LocalDate.now(), this.getClass().getSimpleName());
 
 		LotTransfer lotTransfer = lotMapperDTO.toEntity(dto);
-		for(Transfer u : lotTransfer.getLotTransfer()) {
-			transferService.createLotTransfer(u.getSourceAccountNumber() , u.getDestinationAccountNumber(), u.getAmount(), u.getTransferDate(), u.getDescription());
-		}
+		
+	    transferRepository.save(lotTransfer);
+		TimeUnit.SECONDS.sleep(10);
 
+		
+		for(Transfer u : lotTransfer.getLotTransfer()) {
+			transferService.createLotTransfer(u.getSourceAccountNumber() , u.getDestinationAccountNumber(), u.getAmount(), u.getTransferDate(), u.getDescription());		
+			u.setEtatTransfert(Etat.SUCCESS); 
+		}	
+		
 		if( transferRepository.save(lotTransfer) != null) {
 			logger = new Log(Etat.SUCCESS, "Save effectué sur le lotTransfer", LocalDate.now(), this.getClass().getSimpleName());
-
+			
 		}
-		
+					
 		logRepository.save(logger);
-	    
+
+		
 	    return lotTransfer;
 	}
 
