@@ -2,7 +2,7 @@ package cgb.transfert.entity;
 
 import java.time.LocalDate;
 
-import cgb.transfert.dto.Etat;
+import cgb.transfert.Etat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

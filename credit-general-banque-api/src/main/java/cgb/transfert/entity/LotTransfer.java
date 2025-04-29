@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
-import cgb.transfert.dto.Etat;
+import cgb.transfert.Etat;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

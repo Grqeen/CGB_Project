@@ -3,6 +3,7 @@ package cgb.transfert.dto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import cgb.transfert.Etat;
 import cgb.transfert.entity.Log;
 import cgb.transfert.entity.LotTransfer;
 import cgb.transfert.entity.Transfer;

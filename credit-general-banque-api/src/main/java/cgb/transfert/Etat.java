@@ -1,4 +1,4 @@
-package cgb.transfert.dto;
+package cgb.transfert;
 
 public enum Etat {
 	SUCCESS, WAITING, FAILURE, CANCELED

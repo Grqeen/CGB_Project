@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import cgb.transfert.dto.Etat;
+import cgb.transfert.Etat;
 import cgb.transfert.dto.LotMapperDTO;
 import cgb.transfert.dto.LotTransferDTO;
 import cgb.transfert.entity.Account;

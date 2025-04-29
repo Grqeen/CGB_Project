@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.sql.Date;
 import java.time.LocalDate;
 
-import cgb.transfert.dto.Etat;
+import cgb.transfert.Etat;
 import lombok.*;
 
 @Entity

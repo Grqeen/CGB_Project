@@ -20,7 +20,7 @@ import com.sun.net.httpserver.Authenticator.Success;
 import cgb.transfert.services.LogService;
 import cgb.transfert.services.LotTransferService;
 import cgb.transfert.services.TransferService;
-import cgb.transfert.dto.Etat;
+import cgb.transfert.Etat;
 import cgb.transfert.dto.LotTransferDTO;
 import cgb.transfert.entity.*;
 

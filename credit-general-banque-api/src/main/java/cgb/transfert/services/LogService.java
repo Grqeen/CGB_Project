@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import cgb.transfert.dto.Etat;
+import cgb.transfert.Etat;
 import cgb.transfert.entity.Account;
 import cgb.transfert.entity.Log;
 import cgb.transfert.repository.LogRepository;

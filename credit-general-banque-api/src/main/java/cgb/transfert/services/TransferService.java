@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import cgb.transfert.dto.Etat;
+import cgb.transfert.Etat;
 import cgb.transfert.entity.Account;
 import cgb.transfert.entity.Log;
 import cgb.transfert.entity.Transfer;
