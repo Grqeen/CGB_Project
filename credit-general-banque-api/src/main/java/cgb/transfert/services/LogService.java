@@ -60,6 +60,6 @@ public class LogService {
 	      } catch (Exception e) {
 	         e.printStackTrace();
 	      }
-	      System.out.println("JSON : "+jsonObject);
+	      System.out.println("JSON  : "+jsonObject);
 	}
 }
